@@ -1,17 +1,16 @@
 from django.contrib.auth.models import User
 from django.forms import widgets
 from rest_framework import serializers
-from post.models import Post, LANGUAGE_CHOICES, STYLE_CHOICES
+from post.models import Post
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     highlight = serializers.HyperlinkedIdentityField(view_name='post-highlight', format='html')
-    GRADE_CHOICES = serializers.ChoiceField()
 
     class Meta:
         model = Post
-        fields = ('url', 'highlight', 'owner', 'GRADE_CHOICES',
+        fields = ('url', 'highlight', 'owner',
                   'title', 'code', 'linenos',
                   'language', 'style', 'poster_title',
                   'poster_img', 'genre', 'grade', 'fee',
