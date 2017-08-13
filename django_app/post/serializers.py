@@ -11,7 +11,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = ('url', 'highlight', 'owner',
-                  'title', 'code', 'linenos',
+                  'code', 'linenos',
                   'language', 'style', 'poster_title',
                   'poster_img', 'genre', 'grade', 'fee',
                   'location', 'place', 'thumbnail_img_1',
@@ -27,7 +27,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         """
         검증한 데이터로 기존 `Snippet` 인스턴스를 업데이트한 후 리턴합니다.
         """
-        instance.title = validated_data.get('title', instance.title)
+        # instance.title = validated_data.get('title', instance.title)
         instance.code = validated_data.get('code', instance.code)
         instance.linenos = validated_data.get('linenos', instance.linenos)
         instance.language = validated_data.get('language', instance.language)
