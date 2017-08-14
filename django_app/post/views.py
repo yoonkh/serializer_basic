@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions
 from post.models import Post
 from post.permissions import IsOwnerOrReadOnly
-from post.serializers import UserSerializer, PostSerializer
+from post.serializers import PostSerializer, PostCreateSerializer
 
 
 # class JSONResponse(HttpResponse):
@@ -209,4 +209,22 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
             serializer.save(owner=self.request.user)
+
+
+class PostCreateSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostCreateSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        return Response("ok")
+
+    @detail_route(renderers_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        post = self.get_object()
+        return Response(post.highlighted)
+
+    def perform_create(self, serializer):
+            serializer.save(owner=self.request.user)
+
 

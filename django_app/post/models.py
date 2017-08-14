@@ -14,7 +14,7 @@ class Post(models.Model):
     genre = models.CharField(max_length=30)
     grade = models.IntegerField(choices=GRADE_CHOICES, help_text='관람 선택', default=1)
     fee = models.IntegerField(default=1)
-    location = models.CharField(max_length=10)
+    location = models.CharField(max_length=30)
     place = models.CharField(max_length=100)
     thumbnail_img_1 = models.ImageField(upload_to='poster/thumbnail_1/')
     thumbnail_img_2 = models.ImageField(upload_to='poster/thumbnail_2/')
@@ -23,4 +23,4 @@ class Post(models.Model):
     date_end = models.DateField(help_text='YYYY-MM-DD', null=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
