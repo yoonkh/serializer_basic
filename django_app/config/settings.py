@@ -14,8 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+POSTER_DIR = os.path.join(BASE_DIR, 'poster')
+print(POSTER_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# AUTH_USER_MODEL = 'post.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,9 +44,7 @@ INSTALLED_APPS = [
 
 ]
 
-REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
-}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,3 +125,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+POSTER_URL = '/poster/'
